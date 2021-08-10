@@ -12,6 +12,8 @@ export default class App extends Component {
     };
   }
   render() {
+    let width;
+    let height;
     const change = () => {
       this.setState({ title: "IT Academy" });
     };
@@ -33,11 +35,17 @@ export default class App extends Component {
       this.setState({ title: e.target.value });
     };
     const onWidth = (e) => {
-      this.setState({ width: e.target.value });
+      // this.setState({ width: e.target.value });
+      width = e.target.value;
     };
     const onHeight = (e) => {
-      this.setState({ height: e.target.value });
+      // this.setState({ height: e.target.value });
+      height = e.target.value;
     };
+
+    const styleChange = (e) => {
+      this.setState({ width: width, height: height })
+    }
     return (
       <div>
         <h1>{this.state.title} {this.state.count}</h1>
@@ -50,6 +58,8 @@ export default class App extends Component {
 
         <input onChange={onWidth} type="text" placeholder="width" />
         <input onChange={onHeight} type="text" placeholder="height" />
+
+        <button onClick={styleChange}>Change</button>
 
         <div style={{
           width: `${this.state.width}px`,

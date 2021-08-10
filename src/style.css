@@ -1,4 +1,7 @@
 .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid green;
   box-shadow: 0 0 4px blue;
   margin: 50px;
