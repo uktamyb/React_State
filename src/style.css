@@ -1,4 +1,6 @@
 .box {
   border: 1px solid green;
   box-shadow: 0 0 4px blue;
+  margin: 50px;
+  transition: all 1s;
 }
