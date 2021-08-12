@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+7.08. KUNGI "STATE" MAVZUSI:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+import React, { Component } from 'react';
+import './style.css';
 
-## Available Scripts
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "WebBrain Academy",
+      count: 1,
+      width: 100,
+      height: 100
+    };
+  }
+  render() {
+    let width;
+    let height;
+    const change = () => {
+      this.setState({ title: "IT Academy" });
+    };
 
-In the project directory, you can run:
+    const plus = () => {
+      if (this.state.count < 10)
+        this.setState({ count: this.state.count + 1 });
+      if (this.state.count === 10)
+        this.setState({ count: 0 });
+    };
+    const minus = () => {
+      if (this.state.count > 0)
+        this.setState({ count: this.state.count - 1 });
+      if (this.state.count === 0)
+        this.setState({ count: 10 });
+    };
+    const titleChange = (e) => {
+      console.log(e.target.value);
+      this.setState({ title: e.target.value });
+    };
+    const onWidth = (e) => {
+      // this.setState({ width: e.target.value });
+      width = e.target.value;
+    };
+    const onHeight = (e) => {
+      // this.setState({ height: e.target.value });
+      height = e.target.value;
+    };
 
-### `npm start`
+    const styleChange = (e) => {
+      this.setState({ width: width, height: height });
+    }
+    return (
+      <div>
+        <h1>{this.state.title} {this.state.count}</h1>
+        <input type="text" onChange={titleChange} />
+        <button onClick={change}>change</button>
+        <button onClick={plus}>+</button>
+        <button onClick={minus}>-</button>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+        <hr />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+        <input onChange={onWidth} type="text" placeholder="width" />
+        <input onChange={onHeight} type="text" placeholder="height" />
 
-### `npm test`
+        <button onClick={styleChange}>Change</button>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+        <div style={{
+          width: `${this.state.width}px`,
+          height: `${this.state.height}px`,
+        }}
+          className="box">Box</div>
 
-### `npm run build`
+        <table>
+          <tr>
+            <td>asdasd</td>
+            <td>asdasdas</td>
+            <td>asdasd</td>
+            <td>asdasda</td>
+          </tr>
+        </table>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+      </div>
+    )
+  }
+}
