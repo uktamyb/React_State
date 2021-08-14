@@ -7,6 +7,7 @@ export default class App extends Component {
     this.state = {
       name: "",
       status: "",
+      selected: null,
       data: [
         { id: 1, name: "Uktam", status: "Hight" },
         { id: 2, name: "Barkamol", status: "Low" },
@@ -41,10 +42,18 @@ export default class App extends Component {
       this.setState({ status: e.target.value })
     };
 
+    const onEdit = (id) => {
+      console.log(id, "edit");
+      this.setState({ selected: id });
+    };
 
+    const onSave = () => {
+      this.setState({ selected: null });
+    };
 
     return (
       <div>
+        <h1>Selected: {this.state.selected}</h1>
         <input onChange={onChangeName} type="text" placeholder="name" />
         <input onChange={onChangeStatus} type="text" placeholder="status" />
         <button onClick={onAdd}>add</button>
@@ -64,8 +73,13 @@ export default class App extends Component {
 
                   <tr key={value.id}>
                     <td>{value.id}</td>
-                    <td>{value.name}</td>
+                    <td>{this.state.selected === value.id ?
+                      (<input type="text" value="value.name" />)
+                      : (value.name)
+                    }
+                    </td>
                     <td>{value.status}</td>
+                    <td> {this.state.selected === value.id ? (<button onClick={onSave}>save</button>) : (<button onClick={() => onEdit(value.id)}>edit</button>)}</td>
                     <td><button onClick={() => onDelete(value.id)}>delete</button></td>
                   </tr>
                 );
@@ -73,7 +87,6 @@ export default class App extends Component {
             }
           </tbody>
         </table>
-        {/* <button onClick={getSortByName}>Sort by name</button> */}
       </div >
     );
   }
